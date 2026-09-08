@@ -1,4 +1,6 @@
 # Find_Pierrot
+Petit jeu en python
+
 
 NORME DE COMMITS :
 
