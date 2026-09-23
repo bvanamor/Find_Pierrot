@@ -48,7 +48,7 @@ app = FastAPI(
 
 @app.get("/")
 def home():
-    return {"message": "Bienvenue sur l'API d'ajout de joueurs"}
+    return {"message": "Bienvenue sur l'API de Find Pierrot"}
 
 
 @app.get("/players")
@@ -68,7 +68,12 @@ def get_player(player_id: int):
 def get_player_score(player_id: int):
     for player in players:
         if player["id"] == player_id:
-            return {"player_id": player_id, "score": player["score"], "life": player.get("life", True), "name": player["name"]}
+            return {
+                "player_id": player_id,
+                "score": player.get("score", 0),
+                "life": player.get("life", True),
+                "name": player.get("name", ""),
+            }
     return {"erreur": "Le joueur n'existe pas"}
 
 
