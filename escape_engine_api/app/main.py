@@ -1,7 +1,5 @@
 from fastapi import FastAPI
-
-from app.routers import players
-from app.routers import game
+from app.routers import game, players
 
 
 app = FastAPI(

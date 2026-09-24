@@ -23,6 +23,3 @@ class Inventaire:
 		print("Inventaire de Gilles")
 		for objet in self.objets:
 			print(f"- {objet.get_nom()}")
-
-	
-

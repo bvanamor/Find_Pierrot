@@ -1,8 +1,6 @@
 import json
 from urllib import request, error
 
-from pydantic import BaseModel, ConfigDict, Field
-
 try:
     from app.inventory import Inventaire
 except ModuleNotFoundError:
@@ -12,27 +10,14 @@ except ModuleNotFoundError:
 API_BASE_URL = "http://127.0.0.1:8000"
 
 
-class Perso(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        validate_assignment=True,
-    )
-
-    nom: str = Field(min_length=3, max_length=30)
-    age: int = 0
-    life: bool = True
-    score: int = 0
-    player_id: int | None = None
-    inventaire: Inventaire = Field(default_factory=Inventaire, exclude=True)
-
+class Perso:
     def __init__(self, nom, age=0, life=True, score=0, player_id=None):
-        super().__init__(
-            nom=nom,
-            age=age,
-            life=life,
-            score=score,
-            player_id=player_id,
-        )
+        self.nom = nom
+        self.age = age
+        self.inventaire = Inventaire()
+        self.life = bool(life)
+        self.score = int(score)
+        self.player_id = player_id
 
     def get_nom(self):
         return self.nom
