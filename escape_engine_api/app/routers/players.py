@@ -53,8 +53,10 @@ def update_player_score(player_id: int, score_update: ScoreUpdate):
         if existing_player["id"] == player_id:
             if score_update.name is not None:
                 existing_player["name"] = score_update.name
+
             existing_player["score"] = score_update.score
             existing_player["life"] = score_update.life
+
             return existing_player
 
     raise HTTPException(
